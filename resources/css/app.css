@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Account area (auth + dashboard) — shares the BOUESTI green/gold tokens with the public site. */
+
+@layer base {
+    html {
+        @apply bg-pitch-950 text-ink antialiased;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        @apply min-h-screen font-sans text-[0.9375rem] leading-relaxed;
+    }
+
+    :focus-visible {
+        @apply outline-none ring-2 ring-gold-light/70 ring-offset-2 ring-offset-pitch-950;
+    }
+
+    ::selection {
+        @apply bg-gold-light text-pitch-950;
+    }
+
+    [x-cloak] {
+        display: none !important;
+    }
+}
+
+@layer components {
+    /* Headings */
+    .page-title {
+        @apply font-display text-[clamp(1.75rem,1.4rem+1.4vw,2.4rem)] font-extrabold uppercase leading-none tracking-tight text-white;
+    }
+
+    .card-title {
+        @apply font-display text-2xl font-extrabold uppercase leading-tight text-white;
+    }
+
+    .eyebrow {
+        @apply flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.24em] text-gold-light;
+    }
+
+    .eyebrow::before {
+        content: '';
+        @apply h-0.5 w-8 bg-gold;
+    }
+
+    /* Surfaces */
+    .card {
+        @apply rounded-xl border border-line bg-pitch-850 shadow-card;
+    }
+
+    /* Buttons */
+    .btn {
+        @apply relative inline-flex min-h-[44px] select-none items-center justify-center gap-2 whitespace-nowrap rounded-full border border-transparent px-5 text-xs font-extrabold uppercase tracking-[0.06em] transition duration-200 ease-smooth active:scale-[.98] disabled:pointer-events-none disabled:opacity-50;
+    }
+
+    .btn-primary {
+        @apply bg-gradient-to-br from-gold-light to-gold-dark text-pitch-950 shadow-[0_12px_30px_rgba(217,173,69,.15)] hover:-translate-y-0.5 hover:shadow-[0_14px_36px_rgba(217,173,69,.26)];
+    }
+
+    .btn-secondary {
+        @apply border-brand-light/75 bg-brand/5 text-white hover:border-brand hover:bg-brand;
+    }
+
+    .btn-outline {
+        @apply border-line bg-pitch-850 text-white hover:border-line-strong hover:text-gold-light;
+    }
+
+    .btn-ghost {
+        @apply text-ink-2 hover:bg-white/5 hover:text-white;
+    }
+
+    .btn-danger {
+        @apply bg-[#c9362b] text-white hover:bg-[#df4236];
+    }
+
+    .btn-success {
+        @apply bg-brand text-white hover:bg-brand-light;
+    }
+
+    .btn.is-loading {
+        @apply pointer-events-none opacity-80;
+    }
+
+    .spinner {
+        @apply inline-block h-4 w-4 animate-spin rounded-full border-2 border-current border-r-transparent;
+    }
+
+    .icon-btn {
+        @apply inline-grid h-11 w-11 shrink-0 place-items-center rounded-full border border-line bg-pitch-850 text-white transition duration-200 hover:border-gold hover:text-gold-light active:scale-95;
+    }
+
+    /* Forms */
+    .form-label {
+        @apply mb-2 block text-sm font-semibold text-[#d0dad4];
+    }
+
+    .form-input {
+        @apply block min-h-[48px] w-full rounded-[10px] border border-white/10 bg-[#050c08] px-3.5 py-3 text-base text-white shadow-none transition duration-150 placeholder:text-[#6f7d75] hover:border-white/20 focus:border-gold focus:bg-[#06100a] focus:ring-[3px] focus:ring-gold/20 disabled:cursor-not-allowed disabled:opacity-50;
+    }
+
+    .form-input[aria-invalid='true'] {
+        @apply border-danger focus:ring-danger/20;
+    }
+
+    .form-checkbox {
+        @apply h-5 w-5 rounded border-white/20 bg-[#050c08] text-gold focus:ring-gold/40 focus:ring-offset-pitch-900;
+    }
+
+    .form-error {
+        @apply mt-2 flex items-start gap-1.5 text-xs font-semibold text-[#ff8e84];
+    }
+
+    .link {
+        @apply rounded font-semibold text-gold-light underline-offset-4 transition hover:text-white hover:underline;
+    }
+
+    /* Navigation */
+    .side-link {
+        @apply flex min-h-[44px] items-center gap-3 rounded-lg px-3 text-sm font-semibold text-ink-2 transition duration-150 hover:bg-white/5 hover:text-white;
+    }
+
+    .side-link i {
+        @apply w-5 text-center text-gold;
+    }
+
+    .side-link.is-active {
+        @apply bg-brand/15 text-white shadow-[inset_2px_0_0_theme(colors.gold.DEFAULT)];
+    }
+}
+
+/* Trix rich-text editor, dark theme (admin news form) */
+trix-toolbar .trix-button-row { flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+trix-toolbar .trix-button-group { margin: 0; border: 1px solid rgba(255, 255, 255, .12); border-radius: 10px; background: #0a1710; overflow: hidden; }
+trix-toolbar .trix-button-group--file-tools { display: none; }
+trix-toolbar .trix-button { min-width: 40px; height: 40px; border: 0; border-left: 1px solid rgba(255, 255, 255, .08); color: #eef5f0; background: transparent; }
+trix-toolbar .trix-button:first-child { border-left: 0; }
+trix-toolbar .trix-button--icon::before { filter: invert(1); opacity: .75; }
+trix-toolbar .trix-button:not(:disabled):hover { background: rgba(0, 154, 86, .15); }
+trix-toolbar .trix-button.trix-active { background: rgba(217, 173, 69, .22); }
+trix-toolbar .trix-button:disabled::before { opacity: .25; }
+trix-toolbar .trix-dialog { border: 1px solid rgba(217, 173, 69, .3); border-radius: 12px; background: #07110c; color: #eef5f0; box-shadow: 0 24px 60px rgba(0, 0, 0, .34); }
+trix-toolbar .trix-input--dialog { border: 1px solid rgba(255, 255, 255, .15); border-radius: 8px; background: #050c08; color: #fff; }
+trix-toolbar .trix-button--dialog { color: #f2cf70; }
+trix-editor.form-input { min-height: 20rem; max-height: 70vh; overflow-y: auto; line-height: 1.7; }
+trix-editor.is-invalid { border-color: #ff6b5f; }
+trix-editor:empty:not(:focus)::before { color: #6f7d75; }
+.trix-content h1 { font-family: "Barlow Condensed", sans-serif; font-size: 1.6rem; font-weight: 800; text-transform: uppercase; line-height: 1.1; margin: .6em 0 .3em; }
+.trix-content blockquote { border-left: 3px solid #d9ad45; padding-left: .9em; color: #d0dad4; }
+.trix-content a { color: #f2cf70; text-decoration: underline; }
+.trix-content pre { background: #0a1710; border-radius: 8px; }
+.trix-content ul { list-style: disc; padding-left: 1.4em; }
+.trix-content ol { list-style: decimal; padding-left: 1.4em; }
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
